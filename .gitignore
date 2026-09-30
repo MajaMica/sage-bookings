@@ -1,0 +1,8 @@
+/node_modules
+/vendor
+/public/build
+/public/hot
+/.env
+/wp-content/cache
+*.log
+.DS_Store

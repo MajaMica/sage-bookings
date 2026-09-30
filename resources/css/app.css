@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Kavoon&display=swap');
+
+@import 'tailwindcss';
+
+@source '../../app/**/*.php';
+@source '../../resources/**/*.blade.php';
+@source '../../resources/**/*.js';
+
+@theme {
+  --color-bagdala-orange: #E87B3A;
+  --color-bagdala-orange-dark: #D06A2E;
+  --color-bagdala-blue: #1A2E5A;
+  --color-bagdala-blue-light: #243D70;
+
+  --font-sans: 'Poppins', system-ui, sans-serif;
+  --font-display: 'Kavoon', serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-stone-900 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-semibold;
+  }
+}/* Program content styles */
+.program-content {
+  color: #44403c;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.program-content p {
+  margin-bottom: 1rem;
+}
+
+.program-content strong,
+.program-content b {
+  font-weight: 700;
+  color: #1c1917;
+}
+
+.program-content em,
+.program-content i {
+  font-style: italic;
+}
+
+.program-content h1,
+.program-content h2,
+.program-content h3,
+.program-content h4 {
+  font-weight: 700;
+  color: #1A2E5A;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.program-content h1 { font-size: 1.75rem; }
+.program-content h2 { font-size: 1.5rem; }
+.program-content h3 { font-size: 1.25rem; }
+.program-content h4 { font-size: 1.125rem; }
+
+.program-content ul,
+.program-content ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.program-content ul { list-style-type: disc; }
+.program-content ol { list-style-type: decimal; }
+
+.program-content li {
+  margin-bottom: 0.4rem;
+}
+
+.program-content li::marker {
+  color: #E87B3A;
+}
+
+.program-content a {
+  color: #E87B3A;
+  text-decoration: underline;
+}
+
+.program-content a:hover {
+  color: #D06A2E;
+}
+
+.program-content blockquote {
+  border-left: 4px solid #E87B3A;
+  padding-left: 1rem;
+  margin: 1.25rem 0;
+  font-style: italic;
+  color: #57534e;
+}
+
+.program-content img {
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.program-content br {
+  display: block;
+  content: "";
+  margin-top: 0.5rem;
+}
