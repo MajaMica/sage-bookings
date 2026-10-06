@@ -137,7 +137,6 @@ add_action('after_setup_theme', function () {
      */
     add_theme_support('customize-selective-refresh-widgets');
 }, 20);
-
 /**
  * Register the theme sidebars.
  *
@@ -293,7 +292,7 @@ add_action('acf/init', function () {
 });
 
 /**
- * Register options page for homepage sections
+ * Register options, homepage sections
  */
 add_action('acf/init', function () {
     if (!function_exists('acf_add_options_page')) {
@@ -431,8 +430,12 @@ add_action('pre_get_posts', function ($query) {
 /**
  * Handle contact form submission
  */
-add_action('admin_post_nopriv_bagdala_contact', 'bagdala_handle_contact');
-add_action('admin_post_bagdala_contact', 'bagdala_handle_contact');
+add_action('admin_post_nopriv_bagdala_contact', function () {
+    bagdala_handle_contact();
+});
+add_action('admin_post_bagdala_contact', function () {
+    bagdala_handle_contact();
+});
 
 function bagdala_handle_contact() {
     if (!isset($_POST['bagdala_contact_nonce']) || !wp_verify_nonce($_POST['bagdala_contact_nonce'], 'bagdala_contact')) {
@@ -471,3 +474,34 @@ function bagdala_handle_contact() {
     wp_safe_redirect(add_query_arg('contact', 'success', wp_get_referer()) . '#kontakt-forma');
     exit;
 }
+/**
+ * Disable WordPress block library CSS (not needed - not using Gutenberg)
+ */
+add_action('wp_enqueue_scripts', function () {
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+    wp_dequeue_style('wc-blocks-style');
+    wp_dequeue_style('classic-theme-styles');
+    wp_dequeue_style('global-styles');
+}, 100);
+/**
+ * Image optimization settings
+ */
+
+// Lower WebP quality on generation
+add_filter('wp_editor_set_quality', function ($quality, $mime) {
+    return $mime === 'image/webp' ? 72 : 78;
+}, 10, 2);
+
+// Downscale large uploads to max 1600px
+add_filter('big_image_size_threshold', fn () => 1600);
+
+// Register custom image sizes for trip cards
+add_action('after_setup_theme', function () {
+    add_image_size('trip-card', 480, 300, true);    // 1x for mobile/tablet
+    add_image_size('trip-card-2x', 960, 600, true); // 2x for retina/desktop
+}, 21);
+require_once __DIR__ . '/reservations/cpt.php';
+require_once __DIR__ . '/reservations/helpers.php';
+require_once __DIR__ . '/reservations/ajax.php';
+require_once __DIR__ . '/reservations/emails.php';

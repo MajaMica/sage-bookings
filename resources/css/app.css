@@ -1,10 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Kavoon&display=swap');
-
 @import 'tailwindcss';
 
 @source '../../app/**/*.php';
 @source '../../resources/**/*.blade.php';
 @source '../../resources/**/*.js';
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/poppins-v24-latin_latin-ext-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/poppins-v24-latin_latin-ext-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/poppins-v24-latin_latin-ext-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/poppins-v24-latin_latin-ext-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/poppins-v24-latin_latin-ext-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Kavoon';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/kavoon-v25-latin_latin-ext-regular.woff2') format('woff2');
+}
 
 @theme {
   --color-bagdala-orange: #E87B3A;
@@ -23,7 +69,9 @@
   h1, h2, h3, h4 {
     @apply font-semibold;
   }
-}/* Program content styles */
+}
+
+/* Program content styles */
 .program-content {
   color: #44403c;
   line-height: 1.8;

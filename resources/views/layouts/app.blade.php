@@ -7,6 +7,30 @@
     @php(wp_head())
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script>
+      window.bagdalaReservation = {
+        nonce: '{{ wp_create_nonce('bagdala_reservation') }}'
+      };
+    </script>
+
+    {{-- Preload hero image (LCP element) --}}
+    <link rel="preload"
+          as="image"
+          href="@asset('resources/images/woman-traveling-in-barcelona-3.webp')"
+          media="(min-width: 769px)"
+          fetchpriority="high">
+    <link rel="preload"
+          as="image"
+          href="@asset('resources/images/woman-traveling-in-barcelona-3-mobile.webp')"
+          media="(max-width: 768px)"
+          fetchpriority="high">
+
+    {{-- Preload Kavoon (naslovi iznad fold-a) + Poppins regular (body tekst) --}}
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="@asset('resources/fonts/kavoon-v25-latin_latin-ext-regular.woff2')">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="@asset('resources/fonts/poppins-v24-latin_latin-ext-regular.woff2')">
   </head>
 
   <body @php(body_class())>
@@ -34,5 +58,7 @@
 
     @php(do_action('get_footer'))
     @php(wp_footer())
+
+    @include('partials.reservation-modal')
   </body>
 </html>

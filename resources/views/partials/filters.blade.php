@@ -2,15 +2,15 @@
   $selected_kategorije = isset($_GET['kategorija']) && is_array($_GET['kategorija'])
     ? array_map('sanitize_text_field', $_GET['kategorija'])
     : [];
-  $selected_gradovi = isset($_GET['grad']) && is_array($_GET['grad'])
-    ? array_map('sanitize_text_field', $_GET['grad'])
+  $selected_gradovi = isset($_GET['bg_grad']) && is_array($_GET['bg_grad'])
+    ? array_map('sanitize_text_field', $_GET['bg_grad'])
     : [];
 
   $sve_kategorije = get_terms(['taxonomy' => 'kategorija_putovanja', 'hide_empty' => true]);
   $svi_gradovi = get_terms(['taxonomy' => 'grad', 'hide_empty' => true]);
 @endphp
 
-<form method="GET" action="{{ home_url('/') }}" class="bg-white rounded-2xl border border-neutral-200 p-6 space-y-6 lg:sticky lg:top-32">
+<form method="GET" action="{{ home_url('/') }}#ponuda" class="bg-white rounded-2xl border border-neutral-200 p-6 space-y-6 lg:sticky lg:top-32">
 
   <div>
     <h2 class="font-display text-lg text-bagdala-blue">Filteri pretrage</h2>
@@ -72,7 +72,7 @@
         @foreach($svi_gradovi as $grad)
           <label class="flex items-center gap-3 cursor-pointer group">
             <input type="checkbox"
-                   name="grad[]"
+                   name="bg_grad[]"
                    value="{{ $grad->slug }}"
                    {{ in_array($grad->slug, $selected_gradovi) ? 'checked' : '' }}
                    class="w-4 h-4 rounded border-stone-400 accent-[#E87B3A]">

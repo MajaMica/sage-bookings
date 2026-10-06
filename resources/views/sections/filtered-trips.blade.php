@@ -2,18 +2,34 @@
   $selected_kategorije = isset($_GET['kategorija']) && is_array($_GET['kategorija'])
     ? array_map('sanitize_text_field', $_GET['kategorija'])
     : [];
-  $selected_gradovi = isset($_GET['grad']) && is_array($_GET['grad'])
-    ? array_map('sanitize_text_field', $_GET['grad'])
+  $selected_gradovi = isset($_GET['bg_grad']) && is_array($_GET['bg_grad'])
+    ? array_map('sanitize_text_field', $_GET['bg_grad'])
     : [];
-  $has_filter = !empty($selected_kategorije) || !empty($selected_gradovi);
+  $search_q    = isset($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
+  $search_date = isset($_GET['date']) ? sanitize_text_field($_GET['date']) : '';
+
+  $has_filter = !empty($selected_kategorije)
+             || !empty($selected_gradovi)
+             || !empty($search_q)
+             || !empty($search_date);
 
   $args = [
     'post_type'      => 'putovanje',
     'posts_per_page' => -1,
-    'meta_key'       => 'datum_polaska',
-    'orderby'        => 'meta_value',
-    'order'          => 'ASC',
   ];
+
+  if (!empty($search_q)) {
+    $args['s'] = $search_q;
+  }
+
+  if (!empty($search_date)) {
+    $args['meta_query'] = [[
+      'key'     => 'datum_polaska',
+      'value'   => $search_date,
+      'compare' => '>=',
+      'type'    => 'DATE',
+    ]];
+  }
 
   $tax_query = ['relation' => 'AND'];
   if (!empty($selected_kategorije)) {
@@ -48,6 +64,31 @@
       <p class="text-stone-600 max-w-2xl mx-auto">
         {{ $has_filter ? 'Prikazujemo putovanja po vašim filterima.' : 'Filtriraj po tipu putovanja ili destinaciji, ili pregledaj ponudu ispod.' }}
       </p>
+
+      @if(!empty($search_q) || !empty($search_date))
+        <div class="mt-6 inline-flex flex-wrap items-center gap-3 text-sm">
+          @if(!empty($search_q))
+            <span class="inline-flex items-center gap-2 bg-white border border-neutral-200 rounded-full px-4 py-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-bagdala-orange">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>
+              <strong>{{ $search_q }}</strong>
+            </span>
+          @endif
+          @if(!empty($search_date))
+            <span class="inline-flex items-center gap-2 bg-white border border-neutral-200 rounded-full px-4 py-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-bagdala-orange">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+              </svg>
+              od <strong>{{ date('d.m.Y', strtotime($search_date)) }}</strong>
+            </span>
+          @endif
+          <a href="{{ home_url('/') }}#ponuda"
+             class="text-stone-500 hover:text-bagdala-orange underline transition-colors">
+            Obriši
+          </a>
+        </div>
+      @endif
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -65,7 +106,7 @@
               po vašim filterima.
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               @while($putovanja->have_posts()) @php($putovanja->the_post())
                 @include('partials.card-trip')
               @endwhile
@@ -73,7 +114,7 @@
             @php(wp_reset_postdata())
           @else
             <div class="bg-white rounded-2xl p-12 text-center border border-neutral-200">
-              <p class="text-stone-500 mb-4">Nema putovanja koja odgovaraju filterima.</p>
+              <p class="text-stone-500 mb-4">Nema putovanja koja odgovaraju pretrazi.</p>
               <a href="{{ home_url('/') }}#ponuda"
                  class="inline-block text-bagdala-orange hover:text-bagdala-orange-dark font-semibold transition-colors">
                 Prikaži sve ponude
@@ -88,14 +129,3 @@
     </div>
   </div>
 </section>
-
-@if($has_filter)
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const target = document.getElementById('ponuda');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  </script>
-@endif
