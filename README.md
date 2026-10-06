@@ -100,32 +100,31 @@ Both use inline CSS and are optimised for email clients.
 ---
 
 ## Project Structure
+
+```
 wp-content/themes/bagdala/
 ├── app/
-│ ├── setup.php theme setup, CPT, SCF fields
-│ ├── filters.php
-│ └── reservations/ booking system module
-│ ├── cpt.php CPT + field groups
-│ ├── helpers.php seat counting, auto-calculations
-│ ├── ajax.php reservation submission handler
-│ └── emails.php HTML email templates
+│   ├── setup.php              Theme setup, CPT, SCF fields
+│   ├── filters.php
+│   └── reservations/          Booking system module
+│       ├── cpt.php            CPT + field groups
+│       ├── helpers.php        Seat counting, auto-calculations
+│       ├── ajax.php           Reservation submission handler
+│       └── emails.php         HTML email templates
 │
 ├── resources/
-│ ├── css/app.css Tailwind + @theme tokens
-│ ├── js/app.js modal, slider, interactions
-│ ├── fonts/ local Poppins + Kavoon
-│ ├── images/ theme images (with mobile variants)
-│ └── views/
-│ ├── layouts/ app layout
-│ ├── sections/ hero, header, footer, listings
-│ ├── partials/ card-trip, reservation-modal
-│ └── single-putovanje.blade.php
+│   ├── css/app.css            Tailwind + @theme tokens
+│   ├── js/app.js              Modal, slider, interactions
+│   ├── fonts/                 Local Poppins + Kavoon
+│   ├── images/                Theme images (with mobile variants)
+│   └── views/
+│       ├── layouts/           App layout
+│       ├── sections/          Hero, header, footer, listings
+│       ├── partials/          card-trip, reservation-modal
+│       └── single-putovanje.blade.php
 │
-└── public/build/ Vite output (gitignored)
-
-text
-
----
+└── public/build/              Vite output (gitignored)
+```
 
 ## Setup
 
