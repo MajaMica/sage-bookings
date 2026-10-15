@@ -5,4 +5,4 @@
 /.env
 /wp-content/cache
 *.log
-.DS_Store
+.DS_Store*.backup

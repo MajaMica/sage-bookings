@@ -5,11 +5,11 @@ import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
 
 // Set APP_URL if it doesn't exist for Laravel Vite plugin
 if (! process.env.APP_URL) {
-  process.env.APP_URL = 'http://example.test';
+  process.env.APP_URL = 'https://bagdala-live.ddev.site';
 }
 
 export default defineConfig({
-  base: '/wp-content/themes/bagdala/public/build/',
+  base: '/app/themes/sage/public/build/',
   plugins: [
     tailwindcss(),
     laravel({
@@ -25,8 +25,6 @@ export default defineConfig({
 
     wordpressPlugin(),
 
-    // Generate the theme.json file in the public/build/assets directory
-    // based on the Tailwind config and the theme.json file from base theme folder
     wordpressThemeJson({
       disableTailwindColors: false,
       disableTailwindFonts: false,
@@ -40,6 +38,18 @@ export default defineConfig({
       '@styles': '/resources/css',
       '@fonts': '/resources/fonts',
       '@images': '/resources/images',
+    },
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    strictPort: true,
+    cors: true,
+    origin: 'https://bagdala-live.ddev.site:5173',
+    hmr: {
+      host: 'bagdala-live.ddev.site',
+      protocol: 'wss',
+      clientPort: 5173,
     },
   },
 })

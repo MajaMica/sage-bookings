@@ -173,6 +173,39 @@ add_action('acf/init', function () {
                 'required'      => 1,
             ],
             [
+    'key'   => 'field_mesto_polaska',
+    'label' => '🚌 Mesto polaska',
+    'name'  => 'mesto_polaska',
+    'type'  => 'text',
+],
+[
+    'key'          => 'field_putnici',
+    'label'        => '👥 Putnici',
+    'name'         => 'putnici',
+    'type'         => 'repeater',
+    'layout'       => 'table',
+    'button_label' => 'Dodaj putnika',
+    'sub_fields'   => [
+        [
+            'key'   => 'field_putnik_ime',
+            'label' => 'Ime i prezime',
+            'name'  => 'ime_prezime',
+            'type'  => 'text',
+        ],
+        [
+            'key'     => 'field_putnik_tip',
+            'label'   => 'Tip',
+            'name'    => 'tip',
+            'type'    => 'select',
+            'choices' => [
+                'odrastao'  => 'Odrastao',
+                'dete_6_12' => 'Dete 6-12',
+                'dete_do_6' => 'Dete do 6',
+            ],
+        ],
+    ],
+],
+            [
                 'key'   => 'field_admin_napomena',
                 'label' => '🔒 Interna napomena',
                 'name'  => 'admin_napomena',

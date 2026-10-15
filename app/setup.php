@@ -505,3 +505,4 @@ require_once __DIR__ . '/reservations/cpt.php';
 require_once __DIR__ . '/reservations/helpers.php';
 require_once __DIR__ . '/reservations/ajax.php';
 require_once __DIR__ . '/reservations/emails.php';
+require_once __DIR__ . '/trips.php';

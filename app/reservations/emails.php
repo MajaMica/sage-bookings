@@ -6,19 +6,21 @@ namespace App;
  * Reservation email notifications.
  */
 function bagdala_send_reservation_emails($reservation_id) {
-    $putovanje_id = (int) get_field('putovanje_id', $reservation_id);
-    $ime          = get_field('ime_prezime', $reservation_id);
-    $email        = get_field('email', $reservation_id);
-    $telefon      = get_field('telefon', $reservation_id);
-    $odrasli      = (int) get_field('broj_odraslih', $reservation_id);
-    $deca_6_12    = (int) get_field('broj_dece_6_12', $reservation_id);
-    $deca_do_6    = (int) get_field('broj_dece_do_6', $reservation_id);
-    $ukupno       = $odrasli + $deca_6_12 + $deca_do_6;
-    $napomena     = get_field('napomena_klijenta', $reservation_id);
+    $putovanje_id  = (int) get_field('putovanje_id', $reservation_id);
+    $ime           = get_field('ime_prezime', $reservation_id);
+    $email         = get_field('email', $reservation_id);
+    $telefon       = get_field('telefon', $reservation_id);
+    $odrasli       = (int) get_field('broj_odraslih', $reservation_id);
+    $deca_6_12     = (int) get_field('broj_dece_6_12', $reservation_id);
+    $deca_do_6     = (int) get_field('broj_dece_do_6', $reservation_id);
+    $ukupno        = $odrasli + $deca_6_12 + $deca_do_6;
+    $napomena      = get_field('napomena_klijenta', $reservation_id);
+    $mesto_polaska = get_field('mesto_polaska', $reservation_id);
+    $putnici       = get_field('putnici', $reservation_id);
 
-    $trip_title   = get_the_title($putovanje_id);
-    $trip_url     = get_permalink($putovanje_id);
-    $trip_image   = get_the_post_thumbnail_url($putovanje_id, 'medium_large');
+    $trip_title = get_the_title($putovanje_id);
+    $trip_url   = get_permalink($putovanje_id);
+    $trip_image = get_the_post_thumbnail_url($putovanje_id, 'medium_large');
 
     $datum_polaska = get_field('datum_polaska', $putovanje_id);
     $datum_dolaska = get_field('datum_dolaska', $putovanje_id);
@@ -32,6 +34,32 @@ function bagdala_send_reservation_emails($reservation_id) {
     $osobe_text = $odrasli . ' ' . ($odrasli === 1 ? 'odrasla osoba' : 'odraslih');
     if ($deca_6_12 > 0) $osobe_text .= ' + ' . $deca_6_12 . ' ' . ($deca_6_12 === 1 ? 'dete 6-12' : 'dece 6-12');
     if ($deca_do_6 > 0) $osobe_text .= ' + ' . $deca_do_6 . ' ' . ($deca_do_6 === 1 ? 'dete do 6' : 'dece do 6');
+
+    // ─── Putnici HTML (deljen između admin mejla) ───
+    $putnici_html = '';
+    if (! empty($putnici) && is_array($putnici)) {
+        $tip_labels = [
+            'odrastao'  => '',
+            'dete_6_12' => ' <span style="color:#a8a29e;">(dete 6-12)</span>',
+            'dete_do_6' => ' <span style="color:#a8a29e;">(dete do 6)</span>',
+        ];
+        $items = '';
+        foreach ($putnici as $p) {
+            $p_ime = isset($p['ime_prezime']) ? $p['ime_prezime'] : '';
+            $p_tip = isset($p['tip']) ? $p['tip'] : 'odrastao';
+            $label = isset($tip_labels[$p_tip]) ? $tip_labels[$p_tip] : '';
+            $items .= '<li style="margin-bottom:6px;">' . esc_html($p_ime) . $label . '</li>';
+        }
+        $putnici_html = '
+        <div style="margin-top:22px;">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#a8a29e;font-weight:bold;margin-bottom:10px;">Lista putnika</div>
+          <div style="background:#f8f7f5;border-radius:12px;padding:16px 22px;">
+            <ol style="margin:0;padding-left:20px;font-size:14px;color:#1c1917;line-height:1.7;">
+              ' . $items . '
+            </ol>
+          </div>
+        </div>';
+    }
 
     // ─── CUSTOMER EMAIL ───
     $customer_subject = '✅ Rezervacija primljena — ' . $trip_title;
@@ -105,6 +133,11 @@ function bagdala_send_reservation_emails($reservation_id) {
                       <td style="padding:6px 0;font-size:14px;color:#57534e;">Osobe:</td>
                       <td style="padding:6px 0;font-size:14px;color:#1c1917;">' . esc_html($osobe_text) . ' <span style="color:#a8a29e;">(' . $ukupno . ' ukupno)</span></td>
                     </tr>
+                    ' . ($mesto_polaska ? '
+                    <tr>
+                      <td style="padding:6px 0;font-size:14px;color:#57534e;">Polazak:</td>
+                      <td style="padding:6px 0;font-size:14px;color:#1c1917;font-weight:bold;">' . esc_html($mesto_polaska) . '</td>
+                    </tr>' : '') . '
                     <tr>
                       <td style="padding:6px 0;font-size:14px;color:#57534e;">Broj rez.:</td>
                       <td style="padding:6px 0;font-size:14px;color:#1c1917;font-weight:bold;">#' . $reservation_id . '</td>
@@ -115,7 +148,9 @@ function bagdala_send_reservation_emails($reservation_id) {
               </tr>
             </table>
 
-            <div style="background:#fef3c7;border-left:4px solid #E87B3A;padding:15px 20px;border-radius:8px;margin-bottom:25px;">
+            ' . $putnici_html . '
+
+            <div style="background:#fef3c7;border-left:4px solid #E87B3A;padding:15px 20px;border-radius:8px;margin:25px 0;">
               <div style="font-size:14px;color:#78350f;line-height:1.5;">
                 <strong>📞 Javićemo vam se uskoro</strong><br>
                 Kontaktiraćemo te na <strong>' . esc_html($telefon) . '</strong> ili <strong>' . esc_html($email) . '</strong> radi potvrde i informacija o uplati.
@@ -216,9 +251,16 @@ function bagdala_send_reservation_emails($reservation_id) {
                   <td style="padding:5px 0;font-size:14px;color:#57534e;">Osobe:</td>
                   <td style="padding:5px 0;font-size:14px;color:#1c1917;"><strong>' . $ukupno . '</strong> — ' . esc_html($osobe_text) . '</td>
                 </tr>
+                ' . ($mesto_polaska ? '
+                <tr>
+                  <td style="padding:5px 0;font-size:14px;color:#57534e;">Polazak:</td>
+                  <td style="padding:5px 0;font-size:14px;color:#1c1917;font-weight:bold;">' . esc_html($mesto_polaska) . '</td>
+                </tr>' : '') . '
               </table>
             </td></tr>
           </table>
+
+          ' . $putnici_html . '
 
           ' . ($napomena ? '
           <div style="margin-top:22px;">

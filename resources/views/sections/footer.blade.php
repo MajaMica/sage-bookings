@@ -113,8 +113,13 @@
 
   <div class="relative border-t border-white/10">
     <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
+      <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
       <p>Sva prava zadržana! © {{ date('Y') }} Bagdala Travel & Service 037 DOO Kruševac</p>
-      <p>Design & Development by <a href="https://zencode.website/" target="_blank" rel="noopener" class="hover:text-bagdala-orange transition-colors">ZenCode</a></p>
+      <p class="text-center md:text-right">
+        Sajt dizajnirao i izradio
+        <span class="text-white/40 mx-1">·</span>
+        Design & Development:
+        <a href="https://zencodelab.dev/" target="_blank" rel="noopener" class="hover:text-bagdala-orange transition-colors font-semibold text-white/80">ZenCode</a>
+      </p>
     </div>
   </div>
-</footer>

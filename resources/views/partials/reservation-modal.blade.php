@@ -26,12 +26,22 @@
 
       <input type="hidden" name="putovanje_id" value="">
 
+      {{-- Mesto polaska --}}
+      <div>
+        <label class="block text-sm font-medium text-stone-700 mb-1.5">
+          Mesto polaska <span class="text-red-500">*</span>
+        </label>
+        <input type="text" name="mesto_polaska" required
+               placeholder="Molimo upišite mesto polaska koje Vam odgovara"
+               class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-stone-900">
+      </div>
+
       <div>
         <label class="block text-sm font-medium text-stone-700 mb-1.5">
           Ime i prezime <span class="text-red-500">*</span>
         </label>
         <input type="text" name="ime_prezime" required
-               class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm">
+               class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-stone-900">
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -40,40 +50,43 @@
             Email <span class="text-red-500">*</span>
           </label>
           <input type="email" name="email" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm">
+                 class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-stone-900">
         </div>
         <div>
           <label class="block text-sm font-medium text-stone-700 mb-1.5">
             Telefon <span class="text-red-500">*</span>
           </label>
           <input type="tel" name="telefon" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm">
+                 class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-stone-900">
         </div>
       </div>
 
       <div class="grid grid-cols-3 gap-3">
         <div>
           <label class="block text-sm font-medium text-stone-700 mb-1.5">Odrasli</label>
-          <input type="number" name="broj_odraslih" min="1" value="1" required
-                 class="w-full px-3 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-center">
+          <input type="number" name="broj_odraslih" min="1" value="1" required data-adults
+                 class="w-full px-3 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-stone-900 text-center">
         </div>
         <div>
           <label class="block text-sm font-medium text-stone-700 mb-1.5">Deca 6-12</label>
-          <input type="number" name="broj_dece_6_12" min="0" value="0"
-                 class="w-full px-3 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-center">
+          <input type="number" name="broj_dece_6_12" min="0" value="0" data-children
+                 class="w-full px-3 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-stone-900 text-center">
         </div>
         <div>
           <label class="block text-sm font-medium text-stone-700 mb-1.5">Deca do 6</label>
-          <input type="number" name="broj_dece_do_6" min="0" value="0"
-                 class="w-full px-3 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-center">
+          <input type="number" name="broj_dece_do_6" min="0" value="0" data-toddlers
+                 class="w-full px-3 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-stone-900 text-center">
         </div>
       </div>
+
+      {{-- Dinamička polja za putnike --}}
+      <div data-passengers-container class="space-y-3"></div>
 
       <div>
         <label class="block text-sm font-medium text-stone-700 mb-1.5">Napomena (opciono)</label>
         <textarea name="napomena" rows="3"
                   placeholder="npr. mesto do prozora, posebni zahtevi..."
-                  class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm resize-none"></textarea>
+                  class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-bagdala-orange focus:ring-2 focus:ring-bagdala-orange/20 outline-none transition-all text-sm text-stone-900 resize-none"></textarea>
       </div>
 
       <div data-reservation-message class="hidden text-sm rounded-xl px-4 py-3"></div>
