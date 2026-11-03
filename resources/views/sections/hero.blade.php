@@ -1,6 +1,6 @@
-<section class="relative w-full h-[600px] overflow-hidden" id="hero-section">
+<section class="hero-wave relative w-full h-[600px] overflow-hidden" id="hero-section" data-theme="gold">
 
-    <div class="absolute inset-0" id="hero-slider">
+  <div class="absolute inset-0" id="hero-slider">
     <picture>
       <source media="(max-width: 768px)" srcset="@asset('resources/images/hero-slika-1-mobile.webp')">
       <img src="@asset('resources/images/hero-slika-1.webp')"
@@ -43,44 +43,45 @@
              bg-white/70 backdrop-blur-xl border border-white/60
              ring-1 ring-inset ring-white/30">
 
-  <div class="w-full md:flex-1 flex items-center gap-2 px-4 py-3 md:py-2 rounded-full border border-white/40 bg-white/40 backdrop-blur-sm transition-all focus-within:border-bagdala-orange focus-within:bg-white/60">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-         stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-bagdala-orange flex-shrink-0">
-      <path stroke-linecap="round" stroke-linejoin="round"
-            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-      <path stroke-linecap="round" stroke-linejoin="round"
-            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-    </svg>
-    <input type="text" name="q" placeholder="Destinacija"
-           class="w-full bg-transparent text-stone-900 text-sm placeholder-stone-600 focus:outline-none">
+      <div class="w-full md:flex-1 flex items-center gap-2 px-4 py-3 md:py-2 rounded-full border border-white/40 bg-white/40 backdrop-blur-sm transition-all focus-within:border-bagdala-orange focus-within:bg-white/60">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-bagdala-orange flex-shrink-0">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+        </svg>
+        <input type="text" name="q" placeholder="Destinacija"
+               class="w-full bg-transparent text-stone-900 text-sm placeholder-stone-600 focus:outline-none">
+      </div>
+
+      <div class="w-full md:flex-1 flex items-center gap-2 px-4 py-3 md:py-2 rounded-full border border-white/40 bg-white/40 backdrop-blur-sm transition-all focus-within:border-bagdala-orange focus-within:bg-white/60">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-zinc-700 flex-shrink-0">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+        </svg>
+        <input type="date" name="date"
+               class="w-full bg-transparent text-slate-700 text-sm focus:outline-none">
+      </div>
+
+      <button type="submit"
+              class="w-full md:w-auto bg-bagdala-orange hover:bg-bagdala-orange-dark text-white font-semibold text-sm
+                     px-6 py-3 rounded-full flex items-center justify-center gap-1.5 transition-all flex-shrink-0
+                     shadow-lg shadow-bagdala-orange/30 hover:shadow-bagdala-orange/50 hover:scale-[1.02]">
+        Pretraži
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="2.5" stroke="currentColor" class="w-3 h-3">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+      </button>
+
+      <input type="hidden" name="scroll" value="ponuda">
+    </form>
+
   </div>
 
-  <div class="w-full md:flex-1 flex items-center gap-2 px-4 py-3 md:py-2 rounded-full border border-white/40 bg-white/40 backdrop-blur-sm transition-all focus-within:border-bagdala-orange focus-within:bg-white/60">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-         stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-zinc-700 flex-shrink-0">
-      <path stroke-linecap="round" stroke-linejoin="round"
-            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-    </svg>
-    <input type="date" name="date"
-           class="w-full bg-transparent text-slate-700 text-sm focus:outline-none">
-  </div>
-
-  <button type="submit"
-          class="w-full md:w-auto bg-bagdala-orange hover:bg-bagdala-orange-dark text-white font-semibold text-sm
-                 px-6 py-3 rounded-full flex items-center justify-center gap-1.5 transition-all flex-shrink-0
-                 shadow-lg shadow-bagdala-orange/30 hover:shadow-bagdala-orange/50 hover:scale-[1.02]">
-    Pretraži
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-         stroke-width="2.5" stroke="currentColor" class="w-3 h-3">
-      <path stroke-linecap="round" stroke-linejoin="round"
-            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-    </svg>
-  </button>
-
-  <input type="hidden" name="scroll" value="ponuda">
-</form>
-
-  </div>
 </section>
 
 <script>

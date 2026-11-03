@@ -53,7 +53,27 @@
   $putovanja = new WP_Query($args);
 @endphp
 
-<section id="ponuda" class="bg-neutral-50 py-16">
+<section id="ponuda" class="relative py-16" data-theme="rust">
+    <div class="absolute top-10 left-[5%] w-20 h-20 text-[#7A2E34] opacity-30 pointer-events-none -rotate-12 hidden md:block">
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+      <polygon points="50,4 58,20 66,14 66,34 86,28 80,46 96,54 74,66 78,80 56,74 52,84 48,84 44,74 22,80 26,66 4,54 20,46 14,28 34,34 34,14 42,20"/>
+      <line x1="50" y1="84" x2="50" y2="98"/>
+      <line x1="50" y1="84" x2="50" y2="14"/>
+      <line x1="50" y1="70" x2="78" y2="52"/>
+      <line x1="50" y1="70" x2="22" y2="52"/>
+      <line x1="50" y1="50" x2="70" y2="36"/>
+      <line x1="50" y1="50" x2="30" y2="36"/>
+    </svg>
+  </div>
+
+  <div class="absolute bottom-20 right-[3%] w-24 h-24 text-[#C4622D] opacity-30 pointer-events-none rotate-45 hidden md:block">
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M52 6 C86 24 88 62 50 88 C16 66 18 26 52 6 Z"/>
+      <path d="M50 88 L46 99"/>
+      <path d="M50 88 C51 60 52 34 52 12"/>
+      <path d="M51 66 L72 50 M51 66 L30 52 M51 46 L68 34 M51 46 L34 36"/>
+    </svg>
+  </div>
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-12">

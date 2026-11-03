@@ -113,7 +113,6 @@
 
   <div class="relative border-t border-white/10">
     <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
-      <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
       <p>Sva prava zadržana! © {{ date('Y') }} Bagdala Travel & Service 037 DOO Kruševac</p>
       <p class="text-center md:text-right">
         Sajt dizajnirao i izradio
@@ -123,3 +122,4 @@
       </p>
     </div>
   </div>
+</footer>

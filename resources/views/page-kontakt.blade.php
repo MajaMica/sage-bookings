@@ -41,7 +41,7 @@
 </div>
 
 {{-- FORM + CONTACT INFO --}}
-<section class="bg-neutral-50 py-20" id="kontakt-forma">
+<section class=" py-20" id="kontakt-forma">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-14">

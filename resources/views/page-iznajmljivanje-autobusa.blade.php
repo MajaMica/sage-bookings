@@ -43,7 +43,7 @@
 </div>
 
 {{-- UVOD + FLEET --}}
-<section class="bg-white py-20">
+<section class=" py-20">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-14">
@@ -162,7 +162,7 @@
 </section>
 
 {{-- CONTACT FORM --}}
-<section class="bg-neutral-50 py-20" id="kontakt-autobus">
+<section class=" py-20" id="kontakt-autobus">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-12">

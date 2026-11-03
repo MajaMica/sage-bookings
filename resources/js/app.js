@@ -1,3 +1,15 @@
+import Lenis from 'lenis';
+
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
 // Import assets
 import.meta.glob(['../images/**', '../fonts/**']);
 
@@ -149,3 +161,39 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+const blobs = [...document.querySelectorAll('.blob')];
+let mx = 0, my = 0, cx = 0, cy = 0, scrollY = 0;
+
+if (blobs.length > 0) {
+  const hasMouse = matchMedia('(hover: hover)').matches;
+  
+  if (hasMouse) {
+    addEventListener('pointermove', e => {
+      mx = e.clientX / innerWidth - 0.5;
+      my = e.clientY / innerHeight - 0.5;
+    }, { passive: true });
+  }
+
+  if (typeof lenis !== 'undefined') {
+    lenis.on('scroll', ({ scroll }) => { scrollY = scroll; });
+  }
+
+  (function tick() {
+    cx += (mx - cx) * 0.06;
+    cy += (my - cy) * 0.06;
+    blobs.forEach((b, i) => {
+      const d = (i + 1) * 40;
+      const speed = [0.04, -0.06, 0.08][i];
+      b.style.translate = `${cx * d}px ${cy * d + scrollY * speed}px`;
+    });
+    requestAnimationFrame(tick);
+  })();
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) document.body.dataset.theme = e.target.dataset.theme;
+    });
+  }, { rootMargin: '-50% 0px -50% 0px' });
+
+  document.querySelectorAll('[data-theme]').forEach(s => io.observe(s));
+}

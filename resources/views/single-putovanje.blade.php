@@ -68,7 +68,7 @@
 </div>
 
 {{-- MAIN CONTENT --}}
-<section class="bg-white py-16">
+<section class=" py-16">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
@@ -194,7 +194,7 @@
 </section>
 
 {{-- GALLERY --}}
-<section class="bg-neutral-50 py-16">
+<section class=" py-16">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-10">

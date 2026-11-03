@@ -29,7 +29,7 @@
     @endphp
 
     @if($putovanja->have_posts())
-      <section class="bg-white py-10">
+ <section class=" py-10">
         <div class="max-w-7xl mx-auto px-6">
 
           <div class="text-center mb-12">
