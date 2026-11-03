@@ -13,16 +13,15 @@
         nonce: '{{ wp_create_nonce('bagdala_reservation') }}'
       };
     </script>
-
-    {{-- Preload hero image (LCP element) --}}
+  
     <link rel="preload"
           as="image"
-          href="@asset('resources/images/woman-traveling-in-barcelona-3.webp')"
+          href="@asset('resources/images/hero-slika-1.webp')"
           media="(min-width: 769px)"
           fetchpriority="high">
     <link rel="preload"
           as="image"
-          href="@asset('resources/images/woman-traveling-in-barcelona-3-mobile.webp')"
+          href="@asset('resources/images/hero-slika-1-mobile.webp')"
           media="(max-width: 768px)"
           fetchpriority="high">
 

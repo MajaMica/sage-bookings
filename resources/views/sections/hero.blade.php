@@ -1,9 +1,9 @@
 <section class="relative w-full h-[600px] overflow-hidden" id="hero-section">
 
-   <div class="absolute inset-0" id="hero-slider">
+    <div class="absolute inset-0" id="hero-slider">
     <picture>
-      <source media="(max-width: 768px)" srcset="@asset('resources/images/woman-traveling-in-barcelona-3-mobile.webp')">
-      <img src="@asset('resources/images/woman-traveling-in-barcelona-3.webp')"
+      <source media="(max-width: 768px)" srcset="@asset('resources/images/hero-slika-1-mobile.webp')">
+      <img src="@asset('resources/images/hero-slika-1.webp')"
            alt=""
            fetchpriority="high"
            loading="eager"
@@ -12,8 +12,8 @@
     </picture>
 
     <picture>
-      <source media="(max-width: 768px)" srcset="@asset('resources/images/woman-traveling-in-barcelona-mobile.webp')">
-      <img src="@asset('resources/images/woman-traveling-in-barcelona.webp')"
+      <source media="(max-width: 768px)" srcset="@asset('resources/images/hero-slika-2-mobile.webp')">
+      <img src="@asset('resources/images/hero-slika-2.webp')"
            alt=""
            loading="lazy"
            decoding="async"
@@ -21,8 +21,8 @@
     </picture>
 
     <picture>
-      <source media="(max-width: 768px)" srcset="@asset('resources/images/woman-traveling-in-porto-city-mobile.webp')">
-      <img src="@asset('resources/images/woman-traveling-in-porto-city.webp')"
+      <source media="(max-width: 768px)" srcset="@asset('resources/images/hero-slika-3-mobile.webp')">
+      <img src="@asset('resources/images/hero-slika-3.webp')"
            alt=""
            loading="lazy"
            decoding="async"
